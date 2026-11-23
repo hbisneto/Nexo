@@ -114,6 +114,8 @@ document.getElementById("arquivoBackup")
                 "Não foi possível ler o arquivo selecionado.",
                 "danger"
             );
+        } finally {
+            arquivoBackup.value = "";
         }
     });
 
@@ -167,13 +169,9 @@ function restaurarBackup() {
             Android.isNative();
 
         if (nativo) {
-
             const resposta = JSON.parse(
                 Android.importarBackupBanco(
-                    JSON.stringify({
-                        funcionarios: dados.funcionarios,
-                        divergencias: dados.divergencias
-                    })
+                    JSON.stringify(backupSelecionado)
                 )
             );
 

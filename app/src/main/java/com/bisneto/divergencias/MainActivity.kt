@@ -1,5 +1,10 @@
 package com.bisneto.divergencias
 
+import android.webkit.ValueCallback
+import android.webkit.WebChromeClient.FileChooserParams
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -27,17 +32,50 @@ class MainActivity : ComponentActivity() {
     private lateinit var database: DatabaseHelper
     private lateinit var webView: WebView
 
+    private lateinit var seletorArquivos: ActivityResultLauncher<Array<String>>
+    private var callbackArquivo: ValueCallback<Array<Uri>>? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
         super.onCreate(savedInstanceState)
+
+        seletorArquivos = registerForActivityResult(
+            ActivityResultContracts.OpenDocument()
+        )   { uri ->
+                callbackArquivo?.onReceiveValue(
+                    uri?.let { arrayOf(it) }
+                )
+
+                callbackArquivo = null
+            }
 
         database = DatabaseHelper(this)
 
         webView = WebView(this).apply {
             settings.javaScriptEnabled = true
             settings.domStorageEnabled = true
-            // webViewClient = WebViewClient()
-            webChromeClient = WebChromeClient()
+
+            webChromeClient = object : WebChromeClient() {
+                override fun onShowFileChooser(
+                    webView: WebView?,
+                    filePathCallback: ValueCallback<Array<Uri>>?,
+                    fileChooserParams: FileChooserParams?
+                ): Boolean {
+                    // Cancela uma seleção anterior que ainda esteja pendente.
+                    callbackArquivo?.onReceiveValue(null)
+
+                    callbackArquivo = filePathCallback
+
+                    return try {
+                        seletorArquivos.launch(arrayOf("*/*"))
+                        true
+                    } catch (erro: Exception) {
+                        callbackArquivo?.onReceiveValue(null)
+                        callbackArquivo = null
+                        false
+                    }
+                }
+            }
         }
 
         val bridge = DivergenciaBridge(this, database) { sucesso, mensagem ->
@@ -103,6 +141,9 @@ class MainActivity : ComponentActivity() {
     }
 
     override fun onDestroy() {
+        callbackArquivo?.onReceiveValue(null)
+        callbackArquivo = null
+
         database.close()
         super.onDestroy()
     }

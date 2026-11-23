@@ -68,7 +68,7 @@
         a.click();
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
-        return "baixado:" + nomeArquivo;
+        return "Salvo em: " + nomeArquivo;
     }
 
     function downloadBase64Image(base64Png, nomeArquivo) {
@@ -112,13 +112,13 @@
 
         /* ---- info de build ---- */
         getBuildDate: function () {
-            return "2026.11.20";
+            return "2026.11.23";
         },
         getBuildDateBr: function () {
-            return "20/11/2026";
+            return "23/11/2026";
         },
         getVersionName: function () {
-            return "1.4.0-web";
+            return "1.4.1-web";
         },
 
         /* ---- CRUD Divergências ---- */
@@ -323,14 +323,14 @@
     };
 
     // Diagnóstico no console
-    console.log("[Divergências Web] Android bridge ativo (localStorage).");
-    console.log("[Divergências Web] Divergências atuais:", getDivergencias().length);
-    console.log("[Divergências Web] Funcionários atuais:", getFuncionarios().length);
+    console.log("[Nexo Web] Android bridge ativo (localStorage).");
+    console.log("[Nexo Web] Divergências atuais:", getDivergencias().length);
+    console.log("[Nexo Web] Funcionários atuais:", getFuncionarios().length);
 
     // Aviso se estiver rodando em file://
     if (window.location.protocol === "file:") {
         console.warn(
-            "[Divergências Web] Você está abrindo os arquivos via file://.\n" +
+            "[Nexo Web] Você está abrindo os arquivos via file://.\n" +
             "Em alguns navegadores o localStorage NÃO é compartilhado entre páginas diferentes.\n" +
             "Para testar corretamente, use um servidor local:\n" +
             "  python -m http.server 8080\n" +
