@@ -114,6 +114,8 @@ document.getElementById("arquivoBackup")
                 "Não foi possível ler o arquivo selecionado.",
                 "danger"
             );
+        } finally {
+            arquivoBackup.value = "";
         }
     });
 
