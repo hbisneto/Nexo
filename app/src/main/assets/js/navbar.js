@@ -107,7 +107,7 @@
             <!-- MENU LATERAL -->
             <div class="offcanvas offcanvas-start" tabindex="-1" id="menuLateral" aria-labelledby="menuLateralLabel">
                 <div class="offcanvas-header">
-                    <h5 class="offcanvas-title text-white fw-bold" id="menuLateralLabel">Divergências</h5>
+                    <h5 class="offcanvas-title text-white fw-bold" id="menuLateralLabel">Nexo</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
                 </div>
                 <div class="offcanvas-body p-0">

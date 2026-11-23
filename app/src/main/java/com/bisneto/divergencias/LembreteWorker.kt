@@ -38,7 +38,7 @@ class LembreteWorker(ctx: Context, params: WorkerParameters) : Worker(ctx, param
 
         val notification = NotificationCompat.Builder(applicationContext, CHANNEL_ID)
             .setSmallIcon(android.R.drawable.ic_dialog_info) // troque por um ícone do app se quiser
-            .setContentTitle("Divergências")
+            .setContentTitle("Nexo: Divergências")
             .setContentText("Não esqueça de registrar as divergências do dia")
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setAutoCancel(true)
