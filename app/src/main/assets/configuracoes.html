@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Configurações - Divergências</title>
+    <title>Configurações - Nexo</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/themes.css" rel="stylesheet">
+    <link href="css/configuracoes.css" rel="stylesheet">
 </head>
 <body>
     <!-- Navbar centralizado (carregado por js/navbar.js) -->
@@ -52,52 +53,73 @@
 
                 <!-- ===================== TAB APARENCIA ===================== -->
                 <div class="tab-content" id="configTabsContent">
+                                        
                     <div class="tab-pane fade show active" id="aparencia" role="tabpanel">
-                        <div class="mb-3">
-                            <p class="text-muted mb-3">
-                                Escolha a cor de destaque do aplicativo. A cor escolhida será aplicada em botões, links e outros elementos.
-                            </p>
-                            <div class="d-flex flex-wrap gap-3">
-                                <div class="container text-center">
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="accentColor" id="accentTeal" value="#006F83">
-                                                <label class="form-check-label" for="accentTeal">
-                                                    <span class="d-inline-block rounded"
-                                                        style="width:32px;height:32px;background:#006F83;vertical-align:middle;"></span>
-                                                    Teal (padrão)
-                                                </label>
-                                            </div>
-                                        </div>
 
-                                        <div class="col">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="accentColor"
-                                                    id="accentRed" value="#b6202f">
-                                                <label class="form-check-label" for="accentRed">
-                                                    <span class="d-inline-block rounded"
-                                                        style="width:32px;height:32px;background:#b6202f;vertical-align:middle;"></span>
-                                                    Vermelho (clássico)
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <!-- Modo escuro -->
-                                        <div class="col">
-                                            <div class="form-check form-switch mb-3">
-                                                <input class="form-check-input" type="checkbox" id="cfg_darkMode">
-                                                <label class="form-check-label" for="cfg_darkMode">
-                                                    Modo escuro
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <!-- Modo escuro -->
-                                    </div>
-                                </div>
+                        <p class="text-muted mb-4">
+                            Escolha a cor de destaque do aplicativo. A cor escolhida será aplicada em botões, links e outros elementos.
+                        </p>
+
+                        <div class="appearance-colors">
+
+                            <label class="appearance-option" for="accentTeal">
+                                <input
+                                    class="form-check-input"
+                                    type="radio"
+                                    name="accentColor"
+                                    id="accentTeal"
+                                    value="#006F83"
+                                >
+
+                                <span class="appearance-color" style="background-color: #006F83;"></span>
+
+                                <span class="appearance-label">
+                                    <strong>Teal</strong>
+                                    <small>Padrão</small>
+                                </span>
+                            </label>
+
+                            <label class="appearance-option" for="accentRed">
+                                <input
+                                    class="form-check-input"
+                                    type="radio"
+                                    name="accentColor"
+                                    id="accentRed"
+                                    value="#b6202f"
+                                >
+
+                                <span class="appearance-color" style="background-color: #b6202f;"></span>
+
+                                <span class="appearance-label">
+                                    <strong>Vermelho</strong>
+                                    <small>Clássico</small>
+                                </span>
+                            </label>
+
+                        </div>
+
+                        <hr class="my-4">
+
+                        <div class="appearance-dark-mode">
+                            <div>
+                                <strong>Modo escuro</strong>
+                                <p class="text-muted small mb-0">
+                                    Ativar o tema escuro do aplicativo.
+                                </p>
+                            </div>
+
+                            <div class="form-check form-switch mb-0">
+                                <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    id="cfg_darkMode"
+                                    role="switch"
+                                >
                             </div>
                         </div>
 
                     </div>
+
 
                     <!-- ===================== TAB INTERFACE ===================== -->
                     <div class="tab-pane fade" id="interface" role="tabpanel">
