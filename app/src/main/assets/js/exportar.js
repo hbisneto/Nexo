@@ -6,9 +6,11 @@ const CHAVE_DIVERGENCIAS = "divergencias_db_v1";
 
 function interpretarLista(valor, identificacao) {
     try {
-        const dados = typeof valor === "string"
-            ? JSON.parse(valor || "[]")
-            : valor;
+        const dados = valor == null || valor === ""
+            ? []
+            : typeof valor === "string"
+                ? JSON.parse(valor)
+                : valor;
 
         if (!Array.isArray(dados)) {
             throw new Error("Formato inválido.");
@@ -125,7 +127,7 @@ function realizarExportacao() {
 
         if (
             resultado !== "ok" &&
-            !String(resultado).startsWith("baixado:")
+            !String(resultado).startsWith("Salvo em:")
         ) {
             throw new Error(
                 resultado || "Não foi possível gerar o arquivo."

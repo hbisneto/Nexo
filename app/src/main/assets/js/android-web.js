@@ -68,7 +68,7 @@
         a.click();
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
-        return "baixado:" + nomeArquivo;
+        return "Salvo em: " + nomeArquivo;
     }
 
     function downloadBase64Image(base64Png, nomeArquivo) {
