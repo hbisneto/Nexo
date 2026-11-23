@@ -169,13 +169,9 @@ function restaurarBackup() {
             Android.isNative();
 
         if (nativo) {
-
             const resposta = JSON.parse(
                 Android.importarBackupBanco(
-                    JSON.stringify({
-                        funcionarios: dados.funcionarios,
-                        divergencias: dados.divergencias
-                    })
+                    JSON.stringify(backupSelecionado)
                 )
             );
 
