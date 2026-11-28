@@ -20,6 +20,11 @@
             description: "Exportar dados do aplicativo"
         },
         {
+            href: "notas.html",
+            title: "Contagem de notas",
+            description: "Contar cédulas e moedas"
+        },
+        {
             href: "divergencias.html",
             title: "Divergências",
             description: "Registrar nova divergência"
@@ -42,12 +47,7 @@
         {
             href: "medicamentos.html",
             title: "Medicamentos",
-            description: "Lista de medicamentos"
-        },
-        {
-            href: "notas.html",
-            title: "Contagem de notas",
-            description: "Contar cédulas e moedas"
+            description: "Cadastro de medicamentos"
         },
         {
             href: "importar.html",

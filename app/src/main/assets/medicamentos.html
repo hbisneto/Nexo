@@ -1,178 +1,175 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1">
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/themes.css">
-        <link rel="stylesheet" href="css/medicamentos.css">
-        <title>Nexo | Medicamentos</title>
-    </head>
-    
-    <body>
-        <!-- Navbar centralizado -->
-        <div id="app-navbar"></div>
 
-        <main class="container">
-            <div class="card shadow-sm">
-                <div class="card-body p-4">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicamentos - Nexo</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/themes.css" rel="stylesheet">
+    <link href="css/medicamentos.css" rel="stylesheet">
+</head>
 
-                    <!-- Cabeçalho da página -->
-                    <h2 class="mb-4">
-                        <strong>Medicamentos</strong>
-                    </h2>
+<body>
+    <!-- Navbar centralizado (carregado por js/navbar.js) -->
+    <div id="app-navbar"></div>
 
-                    <p class="text-muted mb-3">
-                        Cadastre medicamentos e produtos, consulte suas informações
-                        e acompanhe as datas de validade.
-                    </p>
+    <main class="container escala-container">
+        <div class="card shadow-sm">
+            <div class="card-body p-3 p-md-4">
+                <div class="d-flex justify-content-between align-items-start gap-2 mb-3">
+                    <div>
+                        <h2 class="mb-2"><strong>Medicamentos</strong></h2>
+                        <p class="text-muted mb-0">
+                            Cadastro manual de medicamentos e produtos farmacêuticos.
+                        </p>
+                    </div>
+                    <button type="button" class="btn btn-danger btn-sm flex-shrink-0" id="btnNovo">
+                        + Novo
+                    </button>
+                </div>
+                <hr class="my-3">
 
-                    <hr class="my-4">
+                <div id="mensagemMedicamentos" class="alert d-none" role="status" aria-live="polite"></div>
 
-                    <!-- Formulário -->
-                    <form id="cadastro">
-                        <div class="mb-3">
-                            <label for="nome" class="form-label">
-                                Nome do medicamento ou produto
-                            </label>
-                            <input
-                                type="text"
-                                class="form-control"
-                                id="nome"
-                                required
-                                maxlength="120"
-                                placeholder="Ex.: Loratadina, Koid D, Neosoro"
-                            >
-                        </div>
+                <div class="mb-3">
+                    <label for="inputBusca" class="form-label">Pesquisar</label>
+                    <input type="search" class="form-control" id="inputBusca" autocomplete="off"
+                           placeholder="Nome, laboratório ou princípio ativo" aria-describedby="contadorResultados">
+                    <div id="contadorResultados" class="form-text" aria-live="polite"></div>
+                </div>
 
-                        <div class="mb-3">
-                            <label for="principio" class="form-label">
-                                Principio Ativo
-                            </label>
-                            <input
-                                type="text"
-                                class="form-control"
-                                id="principio"
-                                maxlength="120"
-                                placeholder="Ex.: Clonazepam"
-                            >
-                        </div>
-
-                        <div class="row g-3 mb-3">
-                            <div class="col-7">
-                                <label for="concentracao" class="form-label">
-                                    Concentração
-                                </label>
-                                <input
-                                    type="number"
-                                    class="form-control"
-                                    id="concentracao"
-                                    min="0"
-                                    step="any"
-                                    placeholder="Ex.: 500"
-                                >
-                            </div>
-
-                            <div class="col-5">
-                                <label for="unidade" class="form-label">
-                                    Unidade
-                                </label>
-                                <select id="unidade" class="form-select">
-                                    <option value="">Selecione</option>
-                                    <option value="mg">mg</option>
-                                    <option value="mcg">mcg</option>
-                                    <option value="g">g</option>
-                                    <option value="mL">mL</option>
-                                    <option value="mg/mL">mg/mL</option>
-                                    <option value="mcg/mL">mcg/mL</option>
-                                    <option value="mg/5 mL">mg/5 mL</option>
-                                    <option value="%">%</option>
-                                    <option value="UI">UI</option>
-                                    <option value="UI/mL">UI/mL</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="laboratorio" class="form-label">
-                                Laboratório
-                            </label>
-                            <input
-                                type="text"
-                                class="form-control"
-                                id="laboratorio"
-                            >
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="tipo" class="form-label">
-                                Tipo
-                            </label>
-                            <select id="tipo" class="form-select">
-                                <option>Comprimido</option>
-                                <option>Comprimido revestido</option>
-                                <option>Cápsula</option>
-                                <option>Xarope</option>
-                                <option>Solução</option>
-                                <option>Gotas</option>
-                                <option>Spray</option>
-                                <option>Pomada</option>
-                                <option>Outro</option>
-                            </select>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="uso" class="form-label">
-                                Uso
-                            </label>
-                            <textarea class="form-control" id="uso" rows="5" placeholder="Serve para..."></textarea>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="validade" class="form-label">
-                                Validade
-                            </label>
-                            <input
-                                type="date"
-                                class="form-control"
-                                id="validade"
-                            >
-                            <div class="form-text">
-                                Que tal verificar agora a validade na embalagem?
-                            </div>
-                        </div>
-
-                        <button type="submit" class="btn btn-danger w-100">
-                            Salvar produto
-                        </button>
-
-                    </form>
-
-                    <hr class="my-4">
-
-                    <!-- Listagem -->
-                    <h4 class="mb-3">Produtos cadastrados</h4>
-
-                    <input
-                        type="search"
-                        class="form-control mb-3"
-                        id="busca"
-                        placeholder="Pesquisar medicamento ou produto..."
-                        aria-label="Pesquisar produto"
-                    >
-
-                    <p id="status" role="status"></p>
-
-                    <section id="lista"></section>
-
+                <div id="listaMedicamentos" aria-live="polite">
+                    <div class="text-muted text-center py-4">Carregando...</div>
                 </div>
             </div>
-        </main>
+        </div>
+    </main>
 
-        <script src="js/bootstrap.bundle.min.js"></script>
-        <script src="js/themes.js"></script>
-        <script src="js/navbar.js"></script>
-        <script src="js/medicamentos.js"></script>
-    </body>
+    <!-- Modal: cadastro / edição -->
+    <div class="modal fade" id="modalForm" tabindex="-1" aria-labelledby="tituloForm" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="tituloForm">Novo medicamento</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="erroForm" class="alert alert-danger d-none" role="alert"></div>
+                    <form id="formMedicamento" novalidate>
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label for="campoNome" class="form-label">Nome <span class="text-danger" aria-hidden="true">*</span></label>
+                                <input type="text" class="form-control" id="campoNome" name="nome" maxlength="120"
+                                       required aria-required="true" aria-describedby="erro-nome" autocomplete="off">
+                                <div class="invalid-feedback" id="erro-nome"></div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label for="campoLaboratorio" class="form-label">Laboratório</label>
+                                <input type="text" class="form-control" id="campoLaboratorio" name="laboratorio" maxlength="120"
+                                       aria-describedby="erro-laboratorio" autocomplete="off">
+                                <div class="invalid-feedback" id="erro-laboratorio"></div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label for="campoPrincipio" class="form-label">Princípio ativo</label>
+                                <input type="text" class="form-control" id="campoPrincipio" name="principio_ativo" maxlength="200"
+                                       aria-describedby="erro-principio_ativo" autocomplete="off">
+                                <div class="invalid-feedback" id="erro-principio_ativo"></div>
+                            </div>
+                            <div class="col-7 col-md-3">
+                                <label for="campoConcentracao" class="form-label">Concentração</label>
+                                <input type="text" class="form-control" id="campoConcentracao" name="concentracao" maxlength="16"
+                                       inputmode="decimal" placeholder="Ex.: 500 ou 2,5"
+                                       aria-describedby="erro-concentracao" autocomplete="off">
+                                <div class="invalid-feedback" id="erro-concentracao"></div>
+                            </div>
+                            <div class="col-5 col-md-3">
+                                <label for="campoUnidade" class="form-label">Unidade</label>
+                                <select class="form-select" id="campoUnidade" name="unidade" aria-describedby="erro-unidade">
+                                    <option value="">—</option>
+                                </select>
+                                <div class="invalid-feedback" id="erro-unidade"></div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label for="campoForma" class="form-label">Forma farmacêutica</label>
+                                <input type="text" class="form-control" id="campoForma" name="forma_farmaceutica" maxlength="60"
+                                       list="listaFormas" placeholder="Selecione ou digite"
+                                       aria-describedby="erro-forma_farmaceutica" autocomplete="off">
+                                <datalist id="listaFormas">
+                                    <option value="Comprimido"></option>
+                                    <option value="Cápsula"></option>
+                                    <option value="Solução oral"></option>
+                                    <option value="Xarope"></option>
+                                    <option value="Suspensão oral"></option>
+                                    <option value="Gotas"></option>
+                                    <option value="Creme"></option>
+                                    <option value="Pomada"></option>
+                                    <option value="Gel"></option>
+                                    <option value="Solução injetável"></option>
+                                    <option value="Colírio"></option>
+                                    <option value="Spray nasal"></option>
+                                    <option value="Supositório"></option>
+                                </datalist>
+                                <div class="invalid-feedback" id="erro-forma_farmaceutica"></div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label for="campoGenerico" class="form-label">Genérico</label>
+                                <select class="form-select" id="campoGenerico" name="generico" aria-describedby="erro-generico">
+                                    <option value="">Não informado</option>
+                                    <option value="sim">Sim</option>
+                                    <option value="nao">Não</option>
+                                </select>
+                                <div class="invalid-feedback" id="erro-generico"></div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label for="campoValidade" class="form-label">Validade</label>
+                                <input type="date" class="form-control" id="campoValidade" name="validade"
+                                       min="1900-01-01" max="2200-12-31" aria-describedby="erro-validade">
+                                <div class="invalid-feedback" id="erro-validade"></div>
+                            </div>
+                            <div class="col-12">
+                                <label for="campoObservacoes" class="form-label">Observações</label>
+                                <textarea class="form-control" id="campoObservacoes" name="observacoes" rows="3" maxlength="1000"
+                                          aria-describedby="erro-observacoes"></textarea>
+                                <div class="invalid-feedback" id="erro-observacoes"></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-danger" id="btnSalvar" form="formMedicamento">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <!-- Modal: detalhes -->
+    <div class="modal fade" id="modalDetalhes" tabindex="-1" aria-labelledby="tituloDetalhes" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="tituloDetalhes">Detalhes do medicamento</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body" id="corpoDetalhes"></div>
+                <div class="modal-footer flex-wrap justify-content-between">
+                    <div class="d-flex flex-wrap gap-2">
+                        <button type="button" class="btn btn-outline-primary btn-sm" id="btnDetEditar">Editar</button>
+                        <button type="button" class="btn btn-outline-secondary btn-sm" id="btnDetAlternar"></button>
+                        <button type="button" class="btn btn-outline-danger btn-sm" id="btnDetExcluir">Excluir</button>
+                    </div>
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/ui-modals.js"></script>
+    <script src="js/themes.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/medicamentos-store.js"></script>
+    <script src="js/medicamentos.js"></script>
+</body>
 </html>

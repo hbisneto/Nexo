@@ -91,6 +91,7 @@ class MainActivity : ComponentActivity() {
         }
 
         webView.addJavascriptInterface(bridge, "Android")
+        webView.addJavascriptInterface(MedicamentosBridge(database), "AndroidMedicamentos")
         webView.webViewClient = object : WebViewClient() {
             override fun onPageFinished(view: WebView?, url: String?) {
                 super.onPageFinished(view, url)
