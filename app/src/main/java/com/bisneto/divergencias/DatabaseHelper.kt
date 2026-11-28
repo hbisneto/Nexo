@@ -40,20 +40,48 @@ class DatabaseHelper(context: Context) :
             )
             """.trimIndent()
         )
+        criarTabelaMedicamentos(db)
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         if (oldVersion < 3) {
-            db.execSQL(
-                """
+            db.execSQL("""
                 CREATE TABLE IF NOT EXISTS funcionarios (
                     cracha TEXT PRIMARY KEY,
                     nome TEXT NOT NULL,
                     cargo TEXT NOT NULL
                 )
-                """.trimIndent()
-            )
+            """.trimIndent())
         }
+        if (oldVersion < 4) {
+            criarTabelaMedicamentos(db)
+        }
+    }
+
+    private fun criarTabelaMedicamentos(db: SQLiteDatabase) {
+        db.execSQL("""
+            CREATE TABLE IF NOT EXISTS medicamentos (
+                uuid TEXT PRIMARY KEY NOT NULL,
+                nome TEXT NOT NULL,
+                concentracao TEXT NOT NULL DEFAULT '',
+                laboratorio TEXT NOT NULL DEFAULT '',
+                tipo TEXT NOT NULL DEFAULT '',
+                validade TEXT,
+                origem TEXT NOT NULL DEFAULT 'local',
+                editavel INTEGER NOT NULL DEFAULT 1
+                    CHECK (editavel IN (0, 1)),
+                criado_em INTEGER NOT NULL,
+                atualizado_em INTEGER NOT NULL
+            )
+        """.trimIndent())
+        db.execSQL("""
+            CREATE INDEX IF NOT EXISTS idx_medicamentos_nome
+            ON medicamentos(nome COLLATE NOCASE)
+        """.trimIndent())
+        db.execSQL("""
+            CREATE INDEX IF NOT EXISTS idx_medicamentos_validade
+            ON medicamentos(validade)
+        """.trimIndent())
     }
 
     /* =========================================================
@@ -216,7 +244,7 @@ class DatabaseHelper(context: Context) :
 
     companion object {
         private const val DATABASE_NAME = "divergencias.db"
-        private const val DATABASE_VERSION = 3
+        private const val DATABASE_VERSION = 4
     }
 
     fun substituirDadosBackup(

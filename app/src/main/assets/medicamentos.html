@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/themes.css">
+        <link rel="stylesheet" href="css/medicamentos.css">
+        <title>Nexo | Medicamentos</title>
+    </head>
+    
+    <body>
+        <!-- Navbar centralizado -->
+        <div id="app-navbar"></div>
+
+        <main class="container">
+            <div class="card shadow-sm">
+                <div class="card-body p-4">
+
+                    <!-- Cabeçalho da página -->
+                    <h2 class="mb-4">
+                        <strong>Medicamentos</strong>
+                    </h2>
+
+                    <p class="text-muted mb-3">
+                        Cadastre medicamentos e produtos, consulte suas informações
+                        e acompanhe as datas de validade.
+                    </p>
+
+                    <hr class="my-4">
+
+                    <!-- Formulário -->
+                    <form id="cadastro">
+                        <div class="mb-3">
+                            <label for="nome" class="form-label">
+                                Nome do medicamento ou produto
+                            </label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="nome"
+                                required
+                                maxlength="120"
+                                placeholder="Ex.: Loratadina, Koid D, Neosoro"
+                            >
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="principio" class="form-label">
+                                Principio Ativo
+                            </label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="principio"
+                                maxlength="120"
+                                placeholder="Ex.: Clonazepam"
+                            >
+                        </div>
+
+                        <div class="row g-3 mb-3">
+                            <div class="col-7">
+                                <label for="concentracao" class="form-label">
+                                    Concentração
+                                </label>
+                                <input
+                                    type="number"
+                                    class="form-control"
+                                    id="concentracao"
+                                    min="0"
+                                    step="any"
+                                    placeholder="Ex.: 500"
+                                >
+                            </div>
+
+                            <div class="col-5">
+                                <label for="unidade" class="form-label">
+                                    Unidade
+                                </label>
+                                <select id="unidade" class="form-select">
+                                    <option value="">Selecione</option>
+                                    <option value="mg">mg</option>
+                                    <option value="mcg">mcg</option>
+                                    <option value="g">g</option>
+                                    <option value="mL">mL</option>
+                                    <option value="mg/mL">mg/mL</option>
+                                    <option value="mcg/mL">mcg/mL</option>
+                                    <option value="mg/5 mL">mg/5 mL</option>
+                                    <option value="%">%</option>
+                                    <option value="UI">UI</option>
+                                    <option value="UI/mL">UI/mL</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="laboratorio" class="form-label">
+                                Laboratório
+                            </label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="laboratorio"
+                            >
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="tipo" class="form-label">
+                                Tipo
+                            </label>
+                            <select id="tipo" class="form-select">
+                                <option>Comprimido</option>
+                                <option>Comprimido revestido</option>
+                                <option>Cápsula</option>
+                                <option>Xarope</option>
+                                <option>Solução</option>
+                                <option>Gotas</option>
+                                <option>Spray</option>
+                                <option>Pomada</option>
+                                <option>Outro</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="uso" class="form-label">
+                                Uso
+                            </label>
+                            <textarea class="form-control" id="uso" rows="5" placeholder="Serve para..."></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="validade" class="form-label">
+                                Validade
+                            </label>
+                            <input
+                                type="date"
+                                class="form-control"
+                                id="validade"
+                            >
+                            <div class="form-text">
+                                Que tal verificar agora a validade na embalagem?
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-danger w-100">
+                            Salvar produto
+                        </button>
+
+                    </form>
+
+                    <hr class="my-4">
+
+                    <!-- Listagem -->
+                    <h4 class="mb-3">Produtos cadastrados</h4>
+
+                    <input
+                        type="search"
+                        class="form-control mb-3"
+                        id="busca"
+                        placeholder="Pesquisar medicamento ou produto..."
+                        aria-label="Pesquisar produto"
+                    >
+
+                    <p id="status" role="status"></p>
+
+                    <section id="lista"></section>
+
+                </div>
+            </div>
+        </main>
+
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="js/themes.js"></script>
+        <script src="js/navbar.js"></script>
+        <script src="js/medicamentos.js"></script>
+    </body>
+
+</html>

@@ -15,19 +15,9 @@
             description: "Página inicial do app"
         },
         {
-            href: "sobre.html",
-            title: "Sobre o app",
-            description: "Versão e informações"
-        },
-        {
-            href: "funcionarios.html",
-            title: "Funcionários",
-            description: "Cadastro de colaboradores"
-        },
-        {
-            href: "escala.html",
-            title: "Escala de funcionários",
-            description: "Criar e compartilhar escalas"
+            href: "exportar.html",
+            title: "Backup e exportação",
+            description: "Exportar dados do aplicativo"
         },
         {
             href: "divergencias.html",
@@ -35,19 +25,29 @@
             description: "Registrar nova divergência"
         },
         {
+            href: "escala.html",
+            title: "Escala de funcionários",
+            description: "Criar e compartilhar escalas"
+        },
+        {
+            href: "funcionarios.html",
+            title: "Funcionários",
+            description: "Cadastro de colaboradores"
+        },
+        {
             href: "historico.html",
             title: "Histórico",
             description: "Ver divergências registradas"
         },
         {
+            href: "medicamentos.html",
+            title: "Medicamentos",
+            description: "Lista de medicamentos"
+        },
+        {
             href: "notas.html",
             title: "Contagem de notas",
             description: "Contar cédulas e moedas"
-        },
-        {
-            href: "exportar.html",
-            title: "Backup e exportação",
-            description: "Exportar dados do aplicativo"
         },
         {
             href: "importar.html",
@@ -58,7 +58,12 @@
             href: "configuracoes.html",
             title: "Configurações",
             description: "Preferências do aplicativo"
-        }
+        },
+        {
+            href: "sobre.html",
+            title: "Sobre o app",
+            description: "Versão e informações"
+        },
     ];
 
     // =========================================================
